@@ -1,0 +1,65 @@
+<section>
+    <div class="bread-crumb">
+        <div class="container">
+            <span class="span-main" routerLink="/home">{{'home' | translate}}</span>
+            <fa-icon class="fa-left"  [icon]="faChevronLeft"></fa-icon>
+            <fa-icon class="fa-right"  [icon]="faChevronRight"></fa-icon>
+            <span>{{'orderCash' | translate}}</span>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="container">
+            <h1>{{'requestData' | translate}}</h1>
+            <span>{{'approximate' | translate}}</span>
+            <div class="carRequestform">
+                <form #carRequest="ngForm" id="contactForm" class="needs-validation" novalidate>
+                    <div class="input-con">
+                        <label class="form-label" for="txtfullName">* {{'name' | translate}}</label>
+                        <input type="text" id="txtfullName" name="customerName" [(ngModel)]="order.customerName" ngModel
+                        required #txtCustomerName="ngModel" class="form-control" placeholder="{{'fullName' | translate}}">
+                    </div>
+
+                    <div class="input-con">
+                        <label class="form-label" for="phone">* {{'phone' | translate}}</label>
+                        <input type="text" id="phone" type="text" name="customerMobileNo" [(ngModel)]="order.customerMobileNo" ngModel
+                        required #txtCustomerMobileNo="ngModel" class="form-control" placeholder="00966XXXXXXX">
+                    </div>
+
+                    <div class="input-con">
+                        <label class="form-label" for="location">* {{'location' | translate}}</label>
+                        <select #ddlRegions name="ddlRegions" class="form-control form-select"
+                      (change)='ddlRegions_Change(ddlRegions.value)'>
+                      <option disabled selected>-- تحديد المنطقة -- </option>
+                      <option [ngValue]="regions" *ngFor="let region of regions;" [value]="region.id">
+                        {{region.nameAr}}
+                      </option>
+                    </select>
+                    </div>
+
+                    <div class="input-con">
+                        <label class="form-label" for="mark">* {{'city' | translate}}</label>
+                        <select #ddlBrands id="model" name="ddlbrands" class="form-control form-select"  [(ngModel)]="order.cityId" ngModel
+                        required #ddlCities="ngModel">{{'allBrands'|translate}}
+                          <option [ngValue]="city.Id" *ngFor="let city of citiesDataSource;">
+                            {{city.Name}}
+                          </option>
+                        </select>
+                    </div>
+
+                 
+                </form>
+            </div>
+
+            <div class="car-request-detailes">
+                    <div class="title-con"><div class="title-dic"></div><h1>{{'carSpecifications' | translate}}</h1></div>
+                    <h5>{{'carRequestDesc' | translate}}</h5>
+                    <div class="input-con">
+                        <textarea name="remarks" [(ngModel)]="order.remarks" ngModel
+                        required #txtRemarks="ngModel" id="msg" class="form-control" placeholder="{{'carReqDesc' | translate}}" rows="8"></textarea>
+                    </div>
+                    <button class="btn41-43 btn-41" form="carRequest" [disabled]="!(carRequest.valid && carRequest.dirty)" (click)="saveOrder()"> <fa-icon [icon]="faPaperPlane"></fa-icon> {{'requestCar' | translate}} </button>
+            </div>
+        </div>
+    </div>
+</section>

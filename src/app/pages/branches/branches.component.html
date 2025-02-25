@@ -1,0 +1,111 @@
+<section [dir]="this.baseService.isRTL?'rtl':'ltr'">
+    <div class="bread-crumb">
+        <div class="container">
+            <span class="span-main" routerLink="/home">{{'home' | translate}}</span>
+            <fa-icon class="fa-left" [icon]="faChevronLeft"></fa-icon>
+            <fa-icon class="fa-right" [icon]="faChevronRight"></fa-icon>
+            <span>{{'branches' | translate}}</span>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="container">
+            <h1>{{'branches' | translate}}</h1>
+
+            <div class="branches-section">
+                <div class="branch-card" *ngFor="let branch of branches">
+                    <div class="branch-deatiles">
+                        <div class="title-con">
+                            <div class="title-dic"></div>
+                            <h4>{{this.baseService.isRTL?branch.name:branch.name}}</h4>
+                        </div>
+                        <div class="detailes">
+                            <ul>
+                                <li><fa-icon [icon]="faMapMarker"></fa-icon>
+                                    {{this.baseService.isRTL?branch.address:branch.address}}</li>
+                                <li>
+                                    <fa-icon [icon]="faPhone"></fa-icon> {{ 'phone' | translate }} :
+                                    {{ branch.phoneNumber?.join(' - ') }}
+                                </li>
+                                <li><fa-icon [icon]="faMessage"></fa-icon> {{'email' | translate}} : {{branch.email}}
+                                </li>
+                                <li><fa-icon [icon]="faClock"></fa-icon> {{'worktime' | translate}} :
+                                    {{branch.startWork}} - {{branch.endWork}}</li>
+                            </ul>
+                            <br>
+                            <button class="btn41-43 btn-41"> <fa-icon [icon]="faPlay"></fa-icon> {{'toBranch' |
+                                translate}} </button>
+                            <br>
+                            <img class="mob-branch" [src]="this.url+'/'+branch.imageUrl">
+                        </div>
+                    </div>
+                    <div class="branch-location">
+                        <img [src]="this.url+'/'+branch.imageUrl">
+                    </div>
+                </div>
+
+                <!-- <div class="branch-card">
+                    <div class="branch-deatiles">
+                        <div class="title-con"><div class="title-dic"></div><h4>{{'CentralRegionBranch' | translate}}</h4></div>
+                        <div class="detailes">
+                            <ul>
+                                <li><fa-icon [icon]="faMapMarker"></fa-icon> {{'address' | translate}}</li>
+                                <li><fa-icon [icon]="faPhone"></fa-icon> {{'phone' | translate}} : 8001260333 </li>
+                                <li><fa-icon [icon]="faFax"></fa-icon> {{'fax' | translate}} : 12345678</li>
+                                <li><fa-icon [icon]="faMessage"></fa-icon> {{'email' | translate}} : info@domain.com </li>
+                                <li><fa-icon [icon]="faClock"></fa-icon> {{'worktime' | translate}} </li>
+                            </ul>
+                            <br>
+                            <button class="btn41-43 btn-41"> <fa-icon [icon]="faPlay"></fa-icon> {{'toBranch' | translate}} </button>
+                        </div>
+                    </div>
+                    <div class="branch-location">
+                        <img src="../../../assets/images/0.png">
+                    </div>
+                </div>
+
+                <div class="branch-card">
+                    <div class="branch-deatiles">
+                        <div class="title-con"><div class="title-dic"></div><h4>{{'CentralRegionBranch' | translate}}</h4></div>
+                        <div class="detailes">
+                            <ul>
+                                <li><fa-icon [icon]="faMapMarker"></fa-icon> {{'address' | translate}}</li>
+                                <li><fa-icon [icon]="faPhone"></fa-icon> {{'phone' | translate}} : 8001260333 </li>
+                                <li><fa-icon [icon]="faFax"></fa-icon> {{'fax' | translate}} : 12345678</li>
+                                <li><fa-icon [icon]="faMessage"></fa-icon> {{'email' | translate}} : info@domain.com </li>
+                                <li><fa-icon [icon]="faClock"></fa-icon> {{'worktime' | translate}} </li>
+                            </ul>
+                            <br>
+                            <button class="btn41-43 btn-41"> <fa-icon [icon]="faPlay"></fa-icon> {{'toBranch' | translate}} </button>
+                        </div>
+                    </div>
+                    <div class="branch-location">
+                        <img src="../../../assets/images/826.png">
+                    </div>
+                </div>
+
+                <div class="branch-card">
+                    <div class="branch-deatiles">
+                        <div class="title-con"><div class="title-dic"></div><h4>{{'CentralRegionBranch' | translate}}</h4></div>
+                        <div class="detailes">
+                            <ul>
+                                <li><fa-icon [icon]="faMapMarker"></fa-icon> {{'address' | translate}}</li>
+                                <li><fa-icon [icon]="faPhone"></fa-icon> {{'phone' | translate}} : 8001260333 </li>
+                                <li><fa-icon [icon]="faFax"></fa-icon> {{'fax' | translate}} : 12345678</li>
+                                <li><fa-icon [icon]="faMessage"></fa-icon> {{'email' | translate}} : info@domain.com </li>
+                                <li><fa-icon [icon]="faClock"></fa-icon> {{'worktime' | translate}} </li>
+                            </ul>
+                            <br>
+                            <button class="btn41-43 btn-41"> <fa-icon [icon]="faPlay"></fa-icon> {{'toBranch' | translate}} </button>
+                        </div>
+                    </div>
+                    <div class="branch-location">
+                        <img src="../../../assets/images/0.png">
+                    </div>
+                </div> -->
+            </div>
+        </div>
+
+
+    </div>
+</section>

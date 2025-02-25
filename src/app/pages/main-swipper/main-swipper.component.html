@@ -1,0 +1,7 @@
+<div class="main-swipper" style="direction: ltr;">
+    <swiper-container [slidesPerView]="1" [navigation]="false" autoplay="true">
+            <swiper-slide *ngFor="let imgItem of promotions" >
+                <img data-src="{{this.baseService.appUrl+(this.baseService.isRTL?imgItem.imageAr:imgItem.imageEn)}}" style="width: -webkit-fill-available; height: 911px;object-fit: cover;">
+            </swiper-slide>
+    </swiper-container>
+</div>

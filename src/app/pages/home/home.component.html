@@ -1,0 +1,64 @@
+<section>
+  <app-main-swipper></app-main-swipper>
+  <div class="main-container" [dir]="baseService.isRTL ? 'rtl' : 'ltr'">
+    <div class="small-container">
+      <div class="search-container">
+        <div class="search-bar">
+          <!-- 🔹 Call search() when button is clicked -->
+          <button class="search-button" (click)="search()">
+            {{ 'search' | translate }}
+          </button>
+
+          <!-- Search By -->
+          <select class="search-filter" [(ngModel)]="selectedCategory">
+            <option value="">{{ 'searchByName' | translate }}</option>
+            <option *ngFor="let category of subCategories" [value]="category.id">
+              {{ baseService.isRTL ? category.nameAr : category.nameEn }}
+            </option>
+          </select>
+
+          <!-- Car Type -->
+          <select class="search-filter" [(ngModel)]="selectedCarType">
+            <option value="">{{ 'carType' | translate }}</option>
+            <option *ngFor="let type of subCategoriesDataSource" [value]="type.id">
+              {{ baseService.isRTL ? type.nameAr : type.nameEn }}
+            </option>
+          </select>
+
+          <!-- Brands -->
+          <select class="search-filter" [(ngModel)]="selectedBrand">
+            <option value="">{{ 'selectBrand' | translate }}</option>
+            <option *ngFor="let brand of brands" [value]="brand.id">
+              {{ baseService.isRTL ? brand.nameAr : brand.nameEn }}
+            </option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="cars-container">
+      <div class="car-card" *ngFor="let product of products">
+        <div class="card-header">
+          <img class="company-logo" [src]="this.baseService.appUrl+product.brand.imageUrl" [alt]="product.brandName">
+        </div>
+        <div class="car-image">
+          <img [src]="this.baseService.appUrl+product.imageUrl" [alt]="product.nameAr">
+        </div>
+        <div class="car-info">
+          <h3>{{ baseService.isRTL ? product.nameAr : product.nameEn }} {{ product.modelYearName }}</h3>
+        </div>
+        <div class="price-section">
+          <span class="aa">{{ product.sellingPrice | number }}</span>
+          <span class="aa">{{ 'installmentsStartFrom' | translate }} {{ product.installmentPrice }} {{ 'sar' | translate
+            }}</span>
+        </div>
+
+        <div class="car-specs">
+          <div class="spec-item">{{ 'kilometers' | translate }}: {{ product.kilometers }}</div>
+          <div class="spec-item">{{ 'specs' | translate }}: {{ product.optionName }}</div>
+          <div class="spec-item">{{ 'fuel' | translate }}: {{ baseService.isRTL ? product.fuelType.nameAr :
+            product.fuelType.nameEn }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

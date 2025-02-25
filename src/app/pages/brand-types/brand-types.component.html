@@ -1,0 +1,66 @@
+<section>
+    <div class="bread-crumb">
+        <div class="container">
+            <span class="span-main" routerLink="/home">{{'home' | translate}}</span>
+            <fa-icon class="fa-left"  [icon]="faChevronLeft"></fa-icon>
+            <fa-icon class="fa-right"  [icon]="faChevronRight"></fa-icon>
+            <span class="span-main">{{'brandsList' | translate}}</span>
+            <fa-icon class="fa-left"  [icon]="faChevronLeft"></fa-icon>
+            <fa-icon class="fa-right"  [icon]="faChevronRight"></fa-icon>
+            <span>كل الماركات</span>
+        </div>
+    </div>
+
+    <div class="main-content" style="padding: 60px 0;">
+        <div class="container">
+            <div class="all-types">
+                <div class="input-con">
+                    <label class="form-label" for="model">اختر ماركة</label>
+                    <select id="branch" name="branch" class="form-control form-select">
+                        <option value="" selected disabled>الماركات</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                    </select>
+                </div>
+
+                <div class="types-titles">
+                    <ul>
+                        <li><a href="">
+                            <fa-icon [icon]="faChevronLeft"></fa-icon>النترا
+                          </a></li>
+                        <li><a href="">
+                            <fa-icon [icon]="faChevronLeft"></fa-icon>اكسنت 
+                          </a></li>
+                        <li><a href="">
+                            <fa-icon [icon]="faChevronLeft"></fa-icon>ازيرا
+                          </a></li>
+                        <li><a href="">
+                            <fa-icon [icon]="faChevronLeft"></fa-icon>سوناتا
+                          </a></li>
+                        <li><a href="">
+                            <fa-icon [icon]="faChevronLeft"></fa-icon>كريتا
+                          </a></li>
+
+                          <li><a href="">
+                            <fa-icon [icon]="faChevronLeft"></fa-icon>كونا
+                          </a></li>
+                        <li><a href="">
+                            <fa-icon [icon]="faChevronLeft"></fa-icon>توسان 
+                          </a></li>
+                        <li><a href="">
+                            <fa-icon [icon]="faChevronLeft"></fa-icon>بالسيد
+                          </a></li>
+                        <li><a href="">
+                            <fa-icon [icon]="faChevronLeft"></fa-icon>سنتافى
+                          </a></li>
+                        <li><a href="">
+                            <fa-icon [icon]="faChevronLeft"></fa-icon>باص كاونتى
+                          </a></li>
+                      </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

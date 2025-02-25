@@ -1,0 +1,371 @@
+<div [dir]="this.baseService.isRTL?'rtl':'ltr'">
+
+
+  <!-- <div class="loader-spinner-bg" *ngIf="loader">
+    <div class="car">
+      <div class="strike"></div>
+      <div class="strike strike2"></div>
+      <div class="strike strike3"></div>
+      <div class="strike strike4"></div>
+      <div class="strike strike5"></div>
+      <div class="car-detail spoiler"></div>
+      <div class="car-detail back"></div>
+      <div class="car-detail center"></div>
+      <div class="car-detail center1"></div>
+      <div class="car-detail front"></div>
+      <div class="car-detail wheel"></div>
+      <div class="car-detail wheel wheel2"></div>
+    </div>
+  </div> -->
+  
+  <!-- <div class="app-nav app-nav-sticky" *ngIf="!loader">
+    <div class="container">
+      <div class="pd-15" style="display: flex;align-items: center;justify-content: space-between;">
+        <span class="app-add">{{'downloadAppNow' | translate}}</span>
+        <a (click)="downloadApp()" target="_blank"><button class="app-btn-nav">{{'downloads' | translate}}</button></a>
+      </div>
+    </div>
+  </div> -->
+
+  <div class="top-bar" >
+    <div class="container">
+      <div class="pd-15">
+        <div class="header-con">
+          <div class="header-alert-news">
+            <span class="top-bar-right">
+              <span class="phone-top"> 8001260333</span>
+              <i-feather name="phone"></i-feather> <a class="phone-top" href="tel:8001260333"
+                style="color: #FFF !important;">8001260333</a>
+            </span>
+          </div>
+
+          <div class="social-media">
+            <ul class="header-social-container">
+              <li>
+                <a href="https://www.facebook.com/Ramzelekhtear/" target="_blank" class="social-link">
+                  <i-feather name="facebook"></i-feather>
+                </a>
+              </li>
+              <li>
+                <a href="https://www.youtube.com/channel/UCuWC2ab2_miaTTDCZYphwAA" target="_blank" class="social-link">
+                  <i-feather name="youtube"></i-feather>
+                </a>
+              </li>
+              <li>
+                <a href="https://twitter.com/ramzelekhtear" target="_blank" class="social-link">
+                  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="19.999"
+                    height="19.999" viewBox="0 0 24 24">
+                    <image width="23" height="23"
+                      xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAATCAYAAAByUDbMAAAEgUlEQVQ4jVVTa0hbBxS+9ya5JjFqCGpErcP6Y8QfCioxDzWaxEfQzGidss5JxU4qlnX7N9ifrX/2LHMMWmFz4hRam1WMRqrTLFrnj42sZkgGumCjecq9MdG83+OkRtyBczmXc/nOOd/3XXR9fV0rlUpbz8/PPRiG5VGpVLrP5yOmp6d7/X7/7wwGA4FIpVJIIpFI1zQaLV0nEglOf3//rwwGo3R+fl6GGQyG++FwGHc6nfTJycnPdDrdt0wms0ChUHyPoiiLQqEgKIqmMxPxeBwJBoOIUql8XFFRUbu8vHw3GAyaKEKh0O71ekPV1dVdh4eHX1oslkdnZ2eERCIZiUajXIvFsoTjeBoms1kkEkHkcvkvYrFYOTU1NeZyuX5mMpkIlpWVhRgMhq9MJpO2r6/veTKZLDcYDA+3traetrW1jRQUFHSFQqHLU6Gura2dkEgkN9Rq9cTJyclkXl5euofBNCqViqyurt6JxWJRpVKphSkbGxt3nU7niUqlUufn5xcDT1wuF4A+lkql97a2th5brdaPACiZTKaHYfCA7ahUql2j0dwrLy+vrKysnEilUsTS0tKHbDabXlVV9QNJkgiTybzZ2dn5uc1me2G320dyc3Mv+YSkNDc3X74QBPGSQqFUwnm7u7vrh4eHcHahXC6/eX5+Xtja2nr/6OjoYHt7WxqPxwNwMvB3oexrsEyAcg6HQ1tWVjbE4/HePTg4eEKS5DM6nd7d0dHRdXR0ZJybm5N6PB4vAEGCspBpzpArAdthGBbW6/W3SktLuXK5/EEgEIgZjca33W434vP5vOFw2J2Tk5OmBlQGviFhEYpcLgeA/93ucrksYBepVDrucDheWSwW/enpqUuhUHzg9/uTwBmAIRcLXHLW0tKS2ehyAovFQo6Pj//k8XjjdXV1g/v7+z9ZrdbfcnJy+A0NDaPHx8cvfD6fBXiC8zKJxWKxtLQAAtPYbDbC4XAQmUz2HY1GK4Aen89/Ar21tbVxgiCIlpaW6UQiwQCAq4Fd/U2gCb9Jbm7up0KhcMxsNn+zsLBwp76+XsTj8b4gCMKiVquHKioq3hAIBNOg5NVIq5k5EbYsLCwcU6lUX+/s7CzodLrboVDoLxzHxSKRaMhqtf5NkqQ2Eolca2pqes9ut9t9Pt/LDHdYpgCZmUymsre39+H+/v6uXq9/B06EQXt7e7cCgUCkp6fnQSqVoptMpts2m+1Vd3f3RDweL81siGWAUBR9c3Bw8ClBECcrKysqHMejwNOFuo7FxcUbJSUl15ubmyc9Hg+i0Wi6srKystvb2x+Bz9LWEIlEYLqC0dHRTRzHabOzs5JkMmnOcAgfgZ+8Xu+/sVjsmkwmGyZJEqyz4Xa7/xGLxZ+EQqGQ0+ncoTQ2NhYPDAzsFBcXX5+ZmXkrGo3+AfyB7BnLACgAms1mHZfLVdTU1IydnZ2BfRJFRUUCPp/fbTQan6MrKyuzAoFgUKvVvk+S5I8AABxEo9HXRqRQ0mAQQAeLxRINDw9rsrOz2cFg0I+iaJDD4eRvbm5u/Acjm2zyVFNOLAAAAABJRU5ErkJggg==" />
+                  </svg>
+                </a>
+              </li>
+
+              <li>
+                <a href="https://www.instagram.com/ramzelekhtear/" target="_blank" class="social-link">
+                  <i-feather name="instagram"></i-feather>
+                </a>
+              </li>
+            </ul>
+
+            <div class="langChanger">
+              <span class="lang-changer" *ngIf="dir" (click)="changeLangEN()">English <i-feather name="globe">
+                </i-feather>
+              </span>
+              <span class="lang-changer" *ngIf="!dir" (click)="changeLangAR()">العربية <i-feather name="globe">
+                </i-feather> </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <nav class="nav-main">
+    <div class="container-fluid">
+      <div class="desktop-nav-con">
+        <div class="logo-con"><img routerLink="/home" class="logo" src="../assets/images/logo-main.png" alt="Logo">
+        </div>
+
+        <div class="menu-toggle" id="mobile-menu" (click)="getmenu()">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+
+        <div class="menu">
+          <ul class="desktop-nav">
+            <li>
+              <a routerLink="/home">{{'home' | translate}}</a>
+            </li>
+            <li>
+              <a routerLink="/brands">{{'brandsList' | translate}}</a>
+            </li>
+            <li>
+              <a routerLink="/branches">{{'branches' | translate}}</a>
+            </li>
+            <li>
+              <a routerLink="/contact">{{'contactUs' | translate}}</a>
+            </li>
+          </ul>
+        </div>
+        <div class="buttons">
+          <button class="btn41-43 btn-41 first" routerLink="/calculate">
+            <fa-icon [icon]="faCoins"></fa-icon> {{'CalculateYourInstallment' | translate}}
+          </button>
+          <button class="btn41-43 btn-41" routerLink="/car-request">
+            <fa-icon [icon]="faCar"></fa-icon> {{'requestCar' | translate}}
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <nav class="mobile-navigation-menu has-scrollbar" data-mobile-menu>
+    <div class="menu-top">
+      <h2 class="menu-title">{{'menu' | translate}}</h2>
+
+      <button class="menu-close-btn" (click)="getmenu()" data-mobile-menu-close-btn>
+        <i-feather name="x"></i-feather>
+      </button>
+    </div>
+    <div class="mob-menu">
+      <ul class="mob-nav">
+        <li (click)="home()">
+          <a>{{'home' | translate}}</a>
+        </li>
+        <li (click)="brands()">
+          <a>{{'brandsList' | translate}}</a>
+        </li>
+        <li (click)="branches()">
+          <a>{{'branches' | translate}}</a>
+        </li>
+        <li (click)="services()">
+          <a>{{'services' | translate}}</a>
+        </li>
+        <li (click)="contact()">
+          <a>{{'contactUs' | translate}}</a>
+        </li>
+      </ul>
+    </div>
+    <div class="mob-buttons">
+      <button class="btn41-43 btn-41" (click)="calculate()">
+        <fa-icon [icon]="faCoins"></fa-icon> {{'CalculateYourInstallment' | translate}}
+      </button>
+      <button class="btn41-43 btn-41" (click)="carRequest()">
+        <fa-icon [icon]="faCar"></fa-icon> {{'requestCar' | translate}}
+      </button>
+    </div>
+  </nav>
+
+  <router-outlet (activate)="onActive()" ></router-outlet>
+
+  <footer >
+    <div class="main-footer">
+      <div class="container">
+        <div class="main-footer-con">
+          <div style="text-align: initial;">
+            <span>{{'company' | translate}}</span>
+            <ul>
+              <li><a href="/home">
+                  <fa-icon class="fa-left" [icon]="faChevronLeft"></fa-icon>
+                  <fa-icon class="fa-right" [icon]="faChevronRight"></fa-icon> {{'home' | translate}}
+                </a></li>
+              <li><a href="/brands">
+                  <fa-icon class="fa-left" [icon]="faChevronLeft"></fa-icon>
+                  <fa-icon class="fa-right" [icon]="faChevronRight"></fa-icon> {{'brandsList' | translate}}
+                </a></li>
+              <li><a href="/branches">
+                  <fa-icon class="fa-left" [icon]="faChevronLeft"></fa-icon>
+                  <fa-icon class="fa-right" [icon]="faChevronRight"></fa-icon> {{'branches' | translate}}
+                </a></li>
+              <li><a href="/services">
+                  <fa-icon class="fa-left" [icon]="faChevronLeft"></fa-icon>
+                  <fa-icon class="fa-right" [icon]="faChevronRight"></fa-icon> {{'services' | translate}}
+                </a></li>
+              <li><a href="/contact">
+                  <fa-icon class="fa-left" [icon]="faChevronLeft"></fa-icon>
+                  <fa-icon class="fa-right" [icon]="faChevronRight"></fa-icon> {{'contactUs' | translate}}
+                </a></li>
+            </ul>
+          </div>
+          <!-- <div style="text-align: initial;">
+            <span>{{'contactUs' | translate}}</span>
+            <ul>
+              <li><a href="">
+                  <fa-icon class="fa-left" [icon]="faChevronLeft"></fa-icon>
+                  <fa-icon class="fa-right" [icon]="faChevronRight"></fa-icon> {{'customerService' | translate}}
+                </a></li>
+              <li><a href="">
+                  <fa-icon class="fa-left" [icon]="faChevronLeft"></fa-icon>
+                  <fa-icon class="fa-right" [icon]="faChevronRight"></fa-icon> {{'companySales' | translate}}
+                </a></li>
+              <li><a href="">
+                  <fa-icon class="fa-left" [icon]="faChevronLeft"></fa-icon>
+                  <fa-icon class="fa-right" [icon]="faChevronRight"></fa-icon> {{'complaints' | translate}}
+                </a></li>
+              <li><a href="">
+                  <fa-icon class="fa-left" [icon]="faChevronLeft"></fa-icon>
+                  <fa-icon class="fa-right" [icon]="faChevronRight"></fa-icon> {{'administration' | translate}}
+                </a></li>
+            </ul>
+          </div> -->
+          <div style="text-align: initial;">
+            <span>{{'bestSelling' | translate}}</span>
+            <ul>
+              <li><a href="/cars/2">
+                  <fa-icon class="fa-left" [icon]="faChevronLeft"></fa-icon>
+                  <fa-icon class="fa-right" [icon]="faChevronRight"></fa-icon>{{'Hyundai' | translate}}
+                </a></li>
+              <li><a href="/cars/3">
+                  <fa-icon class="fa-left" [icon]="faChevronLeft"></fa-icon>
+                  <fa-icon class="fa-right" [icon]="faChevronRight"></fa-icon>{{'Kia' | translate}}
+                </a></li>
+              <li><a href="/cars/6">
+                  <fa-icon class="fa-left" [icon]="faChevronLeft"></fa-icon>
+                  <fa-icon class="fa-right" [icon]="faChevronRight"></fa-icon>{{'Chevrolet' | translate}}
+                </a></li>
+              <li><a href="/cars/13">
+                  <fa-icon class="fa-left" [icon]="faChevronLeft"></fa-icon>
+                  <fa-icon class="fa-right" [icon]="faChevronRight"></fa-icon>{{'Isuzu' | translate}}
+                </a></li>
+              <li><a href="/cars/1">
+                  <fa-icon class="fa-left" [icon]="faChevronLeft"></fa-icon>
+                  <fa-icon class="fa-right" [icon]="faChevronRight"></fa-icon>{{'Toyota' | translate}}
+                </a></li>
+              <li><a href="/brands">
+                  <fa-icon class="fa-left" [icon]="faChevronLeft"></fa-icon>
+                  <fa-icon class="fa-right" [icon]="faChevronRight"></fa-icon>{{'otherBrands' | translate}}
+                </a></li>
+            </ul>
+          </div>
+          <div style="text-align: initial;">
+            <span>{{'companybranches' | translate}}</span>
+            <ul>
+              <li><a href="/branches">
+                  <fa-icon class="fa-left" [icon]="faChevronLeft"></fa-icon>
+                  <fa-icon class="fa-right" [icon]="faChevronRight"></fa-icon>{{'Riyadh' | translate}}
+                </a></li>
+              <li><a href="/branches">
+                  <fa-icon class="fa-left" [icon]="faChevronLeft"></fa-icon>
+                  <fa-icon class="fa-right" [icon]="faChevronRight"></fa-icon>{{'Jeddah' | translate}}
+                </a></li>
+              <li><a href="/branches">
+                  <fa-icon class="fa-left" [icon]="faChevronLeft"></fa-icon>
+                  <fa-icon class="fa-right" [icon]="faChevronRight"></fa-icon>{{'Jazan' | translate}}
+                </a></li>
+              <li><a href="/branches">
+                  <fa-icon class="fa-left" [icon]="faChevronLeft"></fa-icon>
+                  <fa-icon class="fa-right" [icon]="faChevronRight"></fa-icon>{{'Medina' | translate}}
+                </a></li>
+              <li><a href="/branches">
+                  <fa-icon class="fa-left" [icon]="faChevronLeft"></fa-icon>
+                  <fa-icon class="fa-right" [icon]="faChevronRight"></fa-icon>{{'Tabuk' | translate}}
+                </a></li>
+              <li><a href="/branches">
+                  <fa-icon class="fa-left" [icon]="faChevronLeft"></fa-icon>
+                  <fa-icon class="fa-right" [icon]="faChevronRight"></fa-icon>{{'KhamisMushayt' | translate}}
+                </a></li>
+            </ul>
+          </div>
+          <!-- <div style="text-align: initial;">
+            <span>{{'cars' | translate}}</span>
+            <ul>
+              <li><a href="">
+                  <fa-icon class="fa-left" [icon]="faChevronLeft"></fa-icon>
+                  <fa-icon class="fa-right" [icon]="faChevronRight"></fa-icon>{{'cars' | translate}}
+                </a></li>
+              <li><a href="">
+                  <fa-icon class="fa-left" [icon]="faChevronLeft"></fa-icon>
+                  <fa-icon class="fa-right" [icon]="faChevronRight"></fa-icon>{{'sales' | translate}}
+                </a></li>
+              <li><a href="">
+                  <fa-icon class="fa-left" [icon]="faChevronLeft"></fa-icon>
+                  <fa-icon class="fa-right" [icon]="faChevronRight"></fa-icon>{{'offers' | translate}}
+                </a></li>
+              <li><a href="">
+                  <fa-icon class="fa-left" [icon]="faChevronLeft"></fa-icon>
+                  <fa-icon class="fa-right" [icon]="faChevronRight"></fa-icon>{{'commonQuestions' | translate}}
+                </a></li>
+              <li><a href="">
+                  <fa-icon class="fa-left" [icon]="faChevronLeft"></fa-icon>
+                  <fa-icon class="fa-right" [icon]="faChevronRight"></fa-icon>{{'others' | translate}}
+                </a></li>
+            </ul>
+          </div> -->
+
+          <div style="text-align: initial;">
+            <span>{{'downloadOurApp' | translate}}</span>
+            <ul class="apps-ul">
+              <li><a href="https://play.google.com/store/apps/details?id=com.ramzelkhtear.ramzapp"><img
+                    src="../assets/images/3.png" width="135px"></a></li>
+              <li><a
+                  href="https://apps.apple.com/pk/app/%D8%B1%D9%85%D8%B2-%D8%A7%D9%84%D8%A7%D8%AE%D8%AA%D9%8A%D8%A7%D8%B1-%D9%84%D9%84%D8%B3%D9%8A%D8%A7%D8%B1%D8%A7%D8%AA/id1571358791"><img
+                    src="../assets/images/4.png" width="135px"></a></li>
+            </ul>
+          </div>
+
+          <!-- <div>
+          <span>{{'Subscribe' | translate}}</span>
+          <ul class="sub-ul">
+            <li>
+              <input type="text" id="email" name="email" class="form-control" placeholder="{{'email' | translate}}">
+            </li>
+            <li>
+              <button class="btn41-43 btn-41" style="width: 100%;">
+                <fa-icon [icon]="faPaperPlane"></fa-icon> {{'share' | translate}}
+              </button>
+            </li>
+            <li>
+              <p>{{'WeSend' | translate}}</p>
+            </li>
+          </ul>
+        </div> -->
+        </div>
+      </div>
+    </div>
+
+    <div class="sub-footer">
+      <div class="container">
+        <div class="sub-footer-con">
+          <span>{{'copyright' | translate}}</span>
+
+          <ul class="header-social-container">
+            <li>
+              <a href="https://www.facebook.com/Ramzelekhtear" target="_blank" class="social-link">
+                <i-feather name="facebook"></i-feather>
+              </a>
+            </li>
+            <li>
+              <a href="https://www.youtube.com/channel/UCuWC2ab2_miaTTDCZYphwAA" target="_blank" class="social-link">
+                <i-feather name="youtube"></i-feather>
+              </a>
+            </li>
+            <li>
+              <a href="https://twitter.com/ramzelekhtear" target="_blank" class="social-link">
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="19.999"
+                  height="19.999" viewBox="0 0 24 24">
+                  <image width="23" height="23"
+                    xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAATCAYAAAByUDbMAAAEgUlEQVQ4jVVTa0hbBxS+9ya5JjFqCGpErcP6Y8QfCioxDzWaxEfQzGidss5JxU4qlnX7N9ifrX/2LHMMWmFz4hRam1WMRqrTLFrnj42sZkgGumCjecq9MdG83+OkRtyBczmXc/nOOd/3XXR9fV0rlUpbz8/PPRiG5VGpVLrP5yOmp6d7/X7/7wwGA4FIpVJIIpFI1zQaLV0nEglOf3//rwwGo3R+fl6GGQyG++FwGHc6nfTJycnPdDrdt0wms0ChUHyPoiiLQqEgKIqmMxPxeBwJBoOIUql8XFFRUbu8vHw3GAyaKEKh0O71ekPV1dVdh4eHX1oslkdnZ2eERCIZiUajXIvFsoTjeBoms1kkEkHkcvkvYrFYOTU1NeZyuX5mMpkIlpWVhRgMhq9MJpO2r6/veTKZLDcYDA+3traetrW1jRQUFHSFQqHLU6Gura2dkEgkN9Rq9cTJyclkXl5euofBNCqViqyurt6JxWJRpVKphSkbGxt3nU7niUqlUufn5xcDT1wuF4A+lkql97a2th5brdaPACiZTKaHYfCA7ahUql2j0dwrLy+vrKysnEilUsTS0tKHbDabXlVV9QNJkgiTybzZ2dn5uc1me2G320dyc3Mv+YSkNDc3X74QBPGSQqFUwnm7u7vrh4eHcHahXC6/eX5+Xtja2nr/6OjoYHt7WxqPxwNwMvB3oexrsEyAcg6HQ1tWVjbE4/HePTg4eEKS5DM6nd7d0dHRdXR0ZJybm5N6PB4vAEGCspBpzpArAdthGBbW6/W3SktLuXK5/EEgEIgZjca33W434vP5vOFw2J2Tk5OmBlQGviFhEYpcLgeA/93ucrksYBepVDrucDheWSwW/enpqUuhUHzg9/uTwBmAIRcLXHLW0tKS2ehyAovFQo6Pj//k8XjjdXV1g/v7+z9ZrdbfcnJy+A0NDaPHx8cvfD6fBXiC8zKJxWKxtLQAAtPYbDbC4XAQmUz2HY1GK4Aen89/Ar21tbVxgiCIlpaW6UQiwQCAq4Fd/U2gCb9Jbm7up0KhcMxsNn+zsLBwp76+XsTj8b4gCMKiVquHKioq3hAIBNOg5NVIq5k5EbYsLCwcU6lUX+/s7CzodLrboVDoLxzHxSKRaMhqtf5NkqQ2Eolca2pqes9ut9t9Pt/LDHdYpgCZmUymsre39+H+/v6uXq9/B06EQXt7e7cCgUCkp6fnQSqVoptMpts2m+1Vd3f3RDweL81siGWAUBR9c3Bw8ClBECcrKysqHMejwNOFuo7FxcUbJSUl15ubmyc9Hg+i0Wi6srKystvb2x+Bz9LWEIlEYLqC0dHRTRzHabOzs5JkMmnOcAgfgZ+8Xu+/sVjsmkwmGyZJEqyz4Xa7/xGLxZ+EQqGQ0+ncoTQ2NhYPDAzsFBcXX5+ZmXkrGo3+AfyB7BnLACgAms1mHZfLVdTU1IydnZ2BfRJFRUUCPp/fbTQan6MrKyuzAoFgUKvVvk+S5I8AABxEo9HXRqRQ0mAQQAeLxRINDw9rsrOz2cFg0I+iaJDD4eRvbm5u/Acjm2zyVFNOLAAAAABJRU5ErkJggg==" />
+                </svg>
+              </a>
+            </li>
+
+            <li>
+              <a href="https://www.instagram.com/ramzelekhtear" target="_blank" class="social-link">
+                <i-feather name="instagram"></i-feather>
+              </a>
+            </li>
+
+
+            <li>
+              <a (click)="toTop()" class="social-link" style="cursor: pointer;">
+                <i-feather name="arrow-up"></i-feather>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>

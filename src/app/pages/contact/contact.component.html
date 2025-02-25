@@ -1,0 +1,54 @@
+<section>
+    <div class="bread-crumb">
+        <div class="container">
+            <span class="span-main" routerLink="/home">{{'home' | translate}}</span>
+            <fa-icon class="fa-left"  [icon]="faChevronLeft"></fa-icon>
+            <fa-icon class="fa-right"  [icon]="faChevronRight"></fa-icon>
+            <span>{{'contactUs' | translate}}</span>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="container">
+            <h1>{{'contactform' | translate}}</h1>
+            <h5>{{'fillForm' | translate}}</h5>
+            <div class="contact-form">
+                <form #contactForm="ngForm" id="contactForm" class="needs-validation" novalidate>
+                    <!-- <div class="input-con">
+                        <select id="branch" name="branch" class="form-control form-select">
+                            <option value="" selected disabled>{{'chooseBranch' | translate}}</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                        </select>
+                    </div> -->
+
+                    <div class="input-con">
+                        <input type="text" id="txtfullName" name="fullName"  [(ngModel)]="contact.name" ngModel
+                        required #txtName="ngModel"  class="form-control" placeholder="{{'fullName' | translate}}">
+                    </div>
+
+                    <div class="input-con">
+                        <input type="email" id="email" name="email" id="txtEmail" [(ngModel)]="contact.email"
+                        ngModel required #txtEmail="ngModel"  class="form-control" placeholder="{{'email' | translate}}">
+                    </div>
+
+                    <div class="input-con">
+                        <input type="text" id="phone" name="phone" id="txtPhone" [(ngModel)]="contact.phone" ngModel
+                        required #txtPhone="ngModel" class="form-control" placeholder="{{'phone' | translate}}">
+                    </div>
+
+                    <div class="input-con">
+                       <textarea name="msg" id="msg" [(ngModel)]="contact.body"
+                       ngModel required #txtBody="ngModel" class="form-control" placeholder="{{'msg' | translate}}" rows="8"></textarea>
+                    </div>
+                </form>
+
+                <div class="form-btns">
+                    <button class="btn41-43 btn-41" [disabled]="!(contactForm.valid&&contactForm.dirty)" (click)="saveContactMessage()"> <fa-icon [icon]="faPaperPlane"></fa-icon> {{'send' | translate}} </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

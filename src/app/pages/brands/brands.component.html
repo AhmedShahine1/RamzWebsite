@@ -1,0 +1,28 @@
+<section>
+    <div class="upper-header">
+        <img src="../../../assets/images/headerbg.png">
+        <div class="centered"><h1>{{'brandsList' | translate}}</h1></div>
+    </div>
+    <div class="bread-crumb">
+        <div class="container">
+            <span class="span-main" routerLink="/home">{{'home' | translate}}</span>
+            <fa-icon class="fa-left"  [icon]="faChevronLeft"></fa-icon>
+            <fa-icon class="fa-right"  [icon]="faChevronRight"></fa-icon>
+            <span>{{'brandsList' | translate}}</span>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="container">
+            <div class="brand-grid">
+                <div class="brand-img-con" *ngFor="let brand of brands">
+                    <a [routerLink]="['/cars/',brand.id]">
+                        <img class="brand-img brand2" [src]="this.url+'/'+brand.imageUrl" alt="">
+                        <span class="brand-name">{{this.baseService.isRTL?brand.nameAr:brand.nameEn}}</span>
+                    </a>
+                </div>
+              
+            </div>
+        </div>
+    </div>
+</section>

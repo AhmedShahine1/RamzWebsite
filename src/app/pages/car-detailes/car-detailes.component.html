@@ -1,0 +1,167 @@
+<section>
+    <div class="upper-header">
+        <img class="headerbg" src="../../../assets/images/headerbg.png">
+        <div class="centered"><img class="headerimg-details" [src]="this.url+'/'+brand?.imageUrl" alt=""></div>
+    </div>
+    <div class="bread-crumb">
+        <div class="container">
+            <span class="span-main" routerLink="/home">{{'home' | translate}}</span>
+            <fa-icon class="fa-left"  [icon]="faChevronLeft"></fa-icon>
+            <fa-icon class="fa-right"  [icon]="faChevronRight"></fa-icon>
+            <span class="span-main" >{{'brandsList' | translate}}</span>
+            <fa-icon class="fa-left"  [icon]="faChevronLeft"></fa-icon>
+            <fa-icon class="fa-right"  [icon]="faChevronRight"></fa-icon>
+            <span>{{this.baseService.isRTL?product[0]?.brand?.nameAr:product[0]?.brand?.nameEn}}</span>
+        </div>
+    </div>
+
+    <div class="main-content" style="padding: 60px 0;">
+        <div class="container">
+            <!-- <div class="input-con">
+                <label class="form-label" for="model">{{'chooseBrand' | translate}}</label>
+                <select id="branch" name="branch" class="form-control form-select">
+                    <option value="" selected disabled>{{'allBrands' | translate}}</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                </select>
+            </div> -->
+
+            <div class="carDetail-head">
+                <div class="title-con"><div class="title-dic"></div><h1>{{this.baseService.isRTL?product[0]?.nameAr:product[0]?.nameEn}}</h1></div>
+                <div class="price-con"><h1>{{product[0]?.sellingPrice}} <p>{{'sar' | translate}}</p></h1></div>
+            </div>
+
+            <div class="car-imgs">
+                <div class="single-pro-image">
+                    <img [src]="imagesrc" width="100%">
+
+                    <div class="small-img-group">
+                        <div class="small-img-col"  *ngFor="let img of product[0].images">
+                            <img [src]="this.url+'/'+img.imageUrl" width="100%" class="small-img" (click)="getSRC($event)">
+                        </div>
+                        <!-- <div class="small-img-col">
+                            <img src="assets/images/slider/slide2.png" width="100%" class="small-img" (click)="getSRC($event)">
+                        </div>
+                        <div class="small-img-col">
+                            <img src="assets/images/slider/slide3.png" width="100%" class="small-img" (click)="getSRC($event)">
+                        </div>
+                        <div class="small-img-col">
+                            <img src="assets/images/slider/slide4.png" width="100%" class="small-img" (click)="getSRC($event)">
+                        </div> -->
+                    </div>
+                </div>
+                <!-- <div class="slider">
+                    <div class="flexslider">
+                        <ul class="slides">
+                            <li data-thumb="assets/images/slider/slide3.png">
+                                <img src="assets/images/slider/slide3.png" />
+                            </li>
+                            <li data-thumb="assets/images/slider/slide2.png">
+                                <img src="assets/images/slider/slide2.png">
+                            </li>
+                            <li data-thumb="assets/images/slider/slide1.png">
+                                <img src="assets/images/slider/slide1.png">
+                            </li>
+                        </ul>
+                    </div>
+                </div> -->
+                <!-- <div class="flexslider-thumbnails" style="direction: ltr;">
+                    <ul class="slides">
+                        <li data-thumb="assets/images/slider/slide3.png" rel="adjustX:10, adjustY:">
+                            <img src="assets/images/slider/slide3.png" alt="#">
+                        </li>
+                        <li data-thumb="assets/images/slider/slide2.png">
+                            <img src="assets/images/slider/slide2.png" alt="#">
+                        </li>
+                        <li data-thumb="assets/images/slider/slide1.png">
+                            <img src="assets/images/slider/slide1.png" alt="#">
+                        </li>
+                    </ul>
+                </div> -->
+            </div>
+            <div class="car-btns-color-grid">
+                <div class="car-colors">
+                    <h3><fa-icon [icon]="faFillDrip"></fa-icon> {{'colors' | translate}}</h3>
+                    <div class="color-con">
+                        <div  *ngFor="let color of product[0]?.colors" class="color"
+                         [style]="'background-color:'+ color.Value" [title]="this.baseService.isRTL?color.Name:color.Name"></div>
+                    </div>
+                </div>
+
+                <div>
+                    <button class="btn41-43 btn-41 first" [routerLink]="['/order-cash']"
+                        [queryParams]="{ productId: this.product[0]?.id , brandName: this.brand?.nameAr , categoryName:  this.product[0]?.subCategory?.nameAr,installmentPrice:this.product[0]?.sellingPrice}" [skipLocationChange]="true">
+                            <fa-icon [icon]="faCoins"></fa-icon> {{'orderCash' | translate}}
+                          </button>
+                          <button class="btn41-43 btn-41" [routerLink]="['/order-installment']"
+                          [queryParams]="{ productId: this.product[0]?.id , brandName: this.brand?.nameAr , categoryName:  this.product[0]?.subCategory?.nameAr,installmentPrice:this.product[0]?.sellingPrice}" [skipLocationChange]="true">
+                            <fa-icon [icon]="faCar"></fa-icon> {{'orderInstallment' | translate}}
+                          </button>
+                </div>
+
+
+            </div>
+
+            <div class="features">
+                <div class="feature-box" *ngFor="let offer of product[0]?.offers">
+                    <img src="../../../assets/images/shield.png" alt="">
+                    <h3>{{this.baseService.isRTL? offer.nameAr:offer.nameEn}} </h3>
+                </div>
+            </div>
+
+            <div class="feature-grid">
+                <div class="feature-grid-box-main" style="border-left: 1px solid #E5E5E5;">
+                    <img src="../../../assets/images/icons/1.png">
+                    <h3>{{'brand' | translate}}</h3>
+                    <h3 class="feature-act">{{this.baseService.isRTL? product[0]?.brand?.nameAr:product[0]?.brand?.nameEn}}</h3>
+                </div>
+                <div class="feature-grid-box-main">
+                    <img src="../../../assets/images/icons/2.png" style="width: 70px;">
+                    <h3>{{'model' | translate}}</h3>
+                    <h3 class="feature-act">{{product[0]?.modelYear}}</h3>
+                </div>
+                <div class="feature-grid-box-main" style="border-right: 1px solid #E5E5E5;">
+                    <img src="../../../assets/images/icons/3.png" style="width: 100px;">
+                    <h3>{{'km' | translate}}</h3>
+                    <h3 class="feature-act">{{product[0]?.kilometers}}</h3>
+                </div>
+                <div class="feature-grid-box-main" style="border-left: 1px solid #E5E5E5;border-bottom: 1px solid #E5E5E5;">
+                    <img src="../../../assets/images/icons/5.png" style="width: 50px;">
+                    <h3>{{'gearbox' | translate}}</h3>
+                    <h3 class="feature-act">{{this.baseService.isRTL? product[0]?.transmissionType?.nameAr:product[0]?.transmissionType?.nameEn}}</h3>
+                </div>
+                <div class="feature-grid-box-main feature-grid-box-main-center" style="border-bottom: 1px solid #E5E5E5;">
+                    <img src="../../../assets/images/icons/4.png" style="width: 75px;">
+                    <h3>{{'Fueltype' | translate}}</h3>
+                    <h3 class="feature-act">{{this.baseService.isRTL? product[0]?.fuelType?.nameAr:product[0]?.fuelType?.nameEn}} </h3>
+                </div>
+                <div class="feature-grid-box-main" style="border-right: 1px solid #E5E5E5;border-bottom: 1px solid #E5E5E5;">
+                    <img src="../../../assets/images/icons/6.png" style="width: 100px;">
+                    <h3>{{'EngineCapacity' | translate}}</h3>
+                    <h3 class="feature-act">{{product[0]?.engineSize}}</h3>
+                </div>
+            </div>
+
+            <div class="specs">
+                <div class="title-con"><div class="title-dic"></div><h1>{{'Specifications' | translate}}</h1></div>
+
+                <div class="specs-list">
+                    <ul >
+                        <li *ngFor="let spec of spec1">
+                            <div  class="title-con"><div class="title-dic"></div><h1>{{this.baseService.isRTL? spec.nameAr:spec.nameEn}}</h1></div>
+                        </li>
+                    </ul>
+
+                    <ul >
+                        <li *ngFor="let specs of spec2">
+                            <div  class="title-con"><div class="title-dic"></div><h1>{{this.baseService.isRTL? specs.nameAr:specs.nameEn}}</h1></div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>

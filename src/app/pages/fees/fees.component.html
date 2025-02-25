@@ -1,0 +1,160 @@
+<section>
+    <div class="bread-crumb">
+        <div class="container">
+            <span class="span-main" routerLink="/home">{{'home' | translate}}</span>
+            <fa-icon class="fa-left"  [icon]="faChevronLeft"></fa-icon>
+            <fa-icon class="fa-right"  [icon]="faChevronRight"></fa-icon>
+            <span>{{'CalculateYourInstallment' | translate}}</span>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="container">
+            <h1>{{'calc' | translate}}</h1>
+            <span> {{'approximate' | translate}} </span>
+            <div class="carRequestform">
+                <form #calculateform="ngForm" id="calculateform" class="needs-validation" novalidate>
+                    <div class="input-con">
+                        <label class="form-label" for="installmentPrice">* {{'installmentPrice' | translate}}</label>
+                        <input type="text" id="installmentPrice" (keypress)="numberOnly($event)" (input)="changData()" name="installmentPrice" [(ngModel)]="calculate.installmentPrice" required ngModel class="form-control" placeholder="{{'5000sar' | translate}}">
+                    </div>
+                    <div class="input-con">
+                        <label class="form-label" for="salary">* {{'salary' | translate}}</label>
+                        <input type="text" id="salary" (keypress)="numberOnly($event)" name="monthlySalary" (input)="changData()" [(ngModel)]="calculate.monthlySalary" required ngModel class="form-control" placeholder="{{'5000sar' | translate}}">
+                    </div>
+
+                    <div class="input-con">
+                        <label class="form-label" for="salarycuts">* {{'salarycuts' | translate}}</label>
+                        <input type="text" id="salarycuts" name="commitments" (input)="changData()" [(ngModel)]="calculate.commitments" ngModel required
+                        #ddlWorkSectors="ngModel" (keypress)="numberOnly($event)" class="form-control" placeholder="{{'suchAs' | translate}}">
+                    </div>
+
+                    <div class="input-con">
+                        <label class="form-label" for="frombank">* {{'fromBank' | translate}}</label>
+                        <select id="frombank" name="salaryBankId" class="form-control form-select" (change)="changData()" [(ngModel)]="calculate.salaryBankId" ngModel required
+                        #ddlWorkSectors="ngModel">
+                            <option value="" selected disabled>{{'bank' | translate}}</option>
+                            <option [ngValue]="bank.id" *ngFor="let bank of banks">{{this.baseService.isRTL?bank.nameAr:bank.nameEn}}</option>
+                        </select>
+                    </div>
+
+                    <div class="input-con">
+                        <label class="form-label" for="section">* {{'workSector' | translate}}</label>
+                        <select id="section" name="worksectorId" class="form-control form-select" (change)="changData()" [(ngModel)]="calculate.worksectorId" ngModel required
+                        #ddlWorkSectors="ngModel">
+                            <option value="" selected disabled>{{'workSector' | translate}}</option>
+                            <option [ngValue]="workSector.id" *ngFor="let workSector of workSectors">{{this.baseService.isRTL?workSector.nameAr:workSector.nameEn}}</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+
+            <div class="cutTime-section">
+                <h4>* {{'Installmentduration' | translate}}</h4>
+
+                <div class="radio-grid">
+                    <div class="radio-con">
+                        <input class="form-check-input" type="radio" name="radio-check" id="radio-check" [checked]="calculate.installmentMonths === 60"
+                        (change)="installmentMonths_change(60)">
+                        <label class="form-check-label" for="radio-check">
+                            60 {{'month' | translate}}
+                        </label>
+                        <br><br>
+                        <span>{{'5y' | translate}}</span>
+                    </div>
+
+                    <div class="radio-con">
+                        <input class="form-check-input" type="radio" name="radio-check" id="radio-check" [checked]="calculate.installmentMonths === 48"
+                        (change)="installmentMonths_change(48)">
+                        <label class="form-check-label" for="radio-check">
+                            48 {{'month' | translate}}
+                        </label>
+                        <br><br>
+                        <span>{{'4y' | translate}}</span>
+                    </div>
+
+                    <div class="radio-con">
+                        <input class="form-check-input" type="radio" name="radio-check" id="radio-check" [checked]="calculate.installmentMonths === 36"
+                        (change)="installmentMonths_change(36)">
+                        <label class="form-check-label" for="radio-check">
+                            36 {{'month' | translate}}
+                        </label>
+                        <br><br>
+                        <span>{{'3y' | translate}}</span>
+                    </div>
+
+                    <div class="radio-con">
+                        <input class="form-check-input" type="radio" name="radio-check" id="radio-check" [checked]="calculate.installmentMonths === 24"
+                        (change)="installmentMonths_change(24)">
+                        <label class="form-check-label" for="radio-check">
+                            24 {{'month' | translate}}
+                        </label>
+                        <br><br>
+                        <span>{{'2y' | translate}}</span>
+                    </div>
+
+                    <div class="radio-con">
+                        <input class="form-check-input" type="radio" name="radio-check" id="radio-check" [checked]="calculate.installmentMonths === 12"
+                        (change)="installmentMonths_change(12)">
+                        <label class="form-check-label" for="radio-check">
+                            12 {{'month' | translate}}
+                        </label>
+                        <br><br>
+                        <span>{{'1y' | translate}}</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="total">
+                <h2>{{'totalPrice' | translate}}</h2>
+                <h2>{{this.orderDetail.totalAmount| number : '1.2-2'}} <span> {{'sar' | translate}} </span></h2>
+            </div>
+
+            <div class="firstcut">
+                <div class="carRequestform">
+                    <div class="input-con">
+                        <label class="form-label" for="firstcutt">* {{'firstPayment' | translate}}</label>
+                        <input type="text" (keypress)="numberOnly($event)" id="firstcutt" name="firstcutt"  (input)="txtDownPaymentAmount_input()" [(ngModel)]="orderDetail.downPaymentAmount"
+                        [min]="orderDetail.minDownPaymentAmount" [max]="orderDetail.maxDownPaymentAmount" ngModel required
+                        #txtDownPaymentAmount="ngModel" class="form-control" placeholder="{{'5000sar' | translate}}">
+                    </div>
+
+                    <div class="input-con">
+                        <label class="form-label" for="firstcutt">* {{'lastPayment' | translate}}</label>
+                        <input type="text" (keypress)="numberOnly($event)" id="lastcutt" name="lastcutt"  (input)="txtLastPaymentAmount_input()" [(ngModel)]="orderDetail.lastPaymentAmount"
+                        [min]="orderDetail.lastPaymentAmount" [max]="orderDetail.lastPaymentAmount" ngModel required
+                        #txtDownPaymentAmount="ngModel" class="form-control" placeholder="{{'5000sar' | translate}}">
+                    </div>
+                </div>
+
+                <div class="monthlycut">
+                    <h2>{{'monthlyPayment' | translate}}</h2>
+                    <h2 >{{orderDetail?.monthlyInstalmentAmount| number : '1.2-2'}} <p>{{'sar' | translate}}</p> </h2>
+                </div>
+
+                <!-- <div class="monthlycut-rate">
+                    <div class="rate-con">
+                        <div class="color" style="background-color: #F30000;"></div>
+                        <span>{{'Pooracceptance' | translate}}</span>
+                    </div>
+
+                    <div class="rate-con">
+                        <div class="color" style="background-color: #FEA500;"></div>
+                        <span>{{'goodacceptance' | translate}}</span>
+                    </div>
+
+                    <div class="rate-con">
+                        <div class="color" style="background-color: #007E01;"></div>
+                        <span>{{'excellentacceptance' | translate}}</span>
+                    </div>
+                </div> -->
+
+                <!-- <div class="submet-con">
+                    <button class="btn41-43 btn-41 first">
+                        <fa-icon [icon]="faCoins"></fa-icon> {{'Installmentpurchase' | translate}}
+                      </button>
+                </div> -->
+            </div>
+        </div>
+    </div>
+</section>
