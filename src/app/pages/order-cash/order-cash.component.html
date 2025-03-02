@@ -27,17 +27,6 @@
                     </div>
 
                     <div class="input-con">
-                        <label class="form-label" for="location">* {{'location' | translate}}</label>
-                        <select #ddlRegions name="ddlRegions" class="form-control form-select"
-                      (change)='ddlRegions_Change(ddlRegions.value)'>
-                      <option disabled selected>-- تحديد المنطقة -- </option>
-                      <option [ngValue]="regions" *ngFor="let region of regions;" [value]="region.id">
-                        {{region.nameAr}}
-                      </option>
-                    </select>
-                    </div>
-
-                    <div class="input-con">
                         <label class="form-label" for="mark">* {{'city' | translate}}</label>
                         <select #ddlBrands id="model" name="ddlbrands" class="form-control form-select"  [(ngModel)]="order.cityId" ngModel
                         required #ddlCities="ngModel">{{'allBrands'|translate}}
@@ -49,16 +38,6 @@
 
                  
                 </form>
-            </div>
-
-            <div class="car-request-detailes">
-                    <div class="title-con"><div class="title-dic"></div><h1>{{'carSpecifications' | translate}}</h1></div>
-                    <h5>{{'carRequestDesc' | translate}}</h5>
-                    <div class="input-con">
-                        <textarea name="remarks" [(ngModel)]="order.remarks" ngModel
-                        required #txtRemarks="ngModel" id="msg" class="form-control" placeholder="{{'carReqDesc' | translate}}" rows="8"></textarea>
-                    </div>
-                    <button class="btn41-43 btn-41" form="carRequest" [disabled]="!(carRequest.valid && carRequest.dirty)" (click)="saveOrder()"> <fa-icon [icon]="faPaperPlane"></fa-icon> {{'requestCar' | translate}} </button>
             </div>
         </div>
     </div>

@@ -12,7 +12,7 @@ import { LocalService } from '../base/local.service';
   providedIn: 'root'
 })
 export class AuthService {
-  baseUrl = this.base.baseUrl + 'auth/';
+  baseUrl = this.base.baseUrl + 'Auth/';
   token: string;
   jwtHelper = new JwtHelperService();
   userToken: any;
@@ -61,13 +61,13 @@ export class AuthService {
 
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     localStorage.clear();
-    this.router.navigate(['/auth/login']);
+    this.router.navigate(['/Account/login']);
 
     // return this.afAuth.auth.signOut().then(() => {
     //   // this.showLoader = false;
     //   localStorage.clear();
-    //   // this.cookieService.deleteAll('user', '/auth/login');
-    //   this.router.navigate(['/auth/login']);
+    //   // this.cookieService.deleteAll('user', '/Account/login');
+    //   this.router.navigate(['/Account/login']);
     // });
     return of({ success: false });
   }

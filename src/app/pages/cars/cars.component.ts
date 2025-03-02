@@ -71,20 +71,20 @@ export class CarsComponent extends BaseComponent implements OnInit {
     );
   }
 
-  filterProducts() {
-    this.products = this.allProducts.filter((product) => {
-      let matchesBrand = !this.selectedBrandId || product.brand.id == this.selectedBrandId;
-      let matchesSubCategory = !this.selectedSubCategoryId || product.subCategory.id == this.selectedSubCategoryId;
-      let matchesPrice =
-        (!this.priceFrom || product.sellingPrice >= this.priceFrom) &&
-        (!this.priceTo || product.sellingPrice <= this.priceTo);
-      return matchesBrand && matchesSubCategory && matchesPrice;
-    });
-  }
-
   onSearchClick() {
-    this.filterProducts();
+    this.productService.search(this.selectedBrandId, this.selectedSubCategoryId, this.priceFrom, this.priceTo)
+      .subscribe((response) => {
+        if (response && response.status) {
+          this.products = response.data; // Update the product list with the API response
+        } else {
+          this.products = []; // No results found
+        }
+      }, (error) => {
+        console.error("Error fetching search results:", error);
+        this.products = []; // Handle errors by clearing the list
+      });
   }
+  
 
   navigateToCarDetails(productId: string) {
     this.router.navigate(['/car-detailes', productId]);

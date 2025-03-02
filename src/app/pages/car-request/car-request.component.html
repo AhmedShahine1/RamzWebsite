@@ -2,8 +2,8 @@
     <div class="bread-crumb">
         <div class="container">
             <span class="span-main" routerLink="/home">{{'home' | translate}}</span>
-            <fa-icon class="fa-left"  [icon]="faChevronLeft"></fa-icon>
-            <fa-icon class="fa-right"  [icon]="faChevronRight"></fa-icon>
+            <fa-icon class="fa-left" [icon]="faChevronLeft"></fa-icon>
+            <fa-icon class="fa-right" [icon]="faChevronRight"></fa-icon>
             <span>{{'requestCar' | translate}}</span>
         </div>
     </div>
@@ -14,72 +14,37 @@
             <span>{{'approximate' | translate}}</span>
             <div class="carRequestform">
                 <form #carRequest="ngForm" id="contactForm" class="needs-validation" novalidate>
+
                     <div class="input-con">
                         <label class="form-label" for="txtfullName">* {{'name' | translate}}</label>
-                        <input type="text" id="txtfullName" name="customerName" [(ngModel)]="order.customerName" ngModel
-                        required #txtCustomerName="ngModel" class="form-control" placeholder="{{'fullName' | translate}}">
+                        <input type="text" id="txtfullName" name="customerName" [(ngModel)]="order.customerName"
+                            required #txtCustomerName="ngModel" class="form-control"
+                            placeholder="{{'fullName' | translate}}">
                     </div>
 
                     <div class="input-con">
                         <label class="form-label" for="phone">* {{'phone' | translate}}</label>
-                        <input type="text" id="phone" name="customerMobileNo" [(ngModel)]="order.customerMobileNo" ngModel
-                        required #txtCustomerMobileNo="ngModel" class="form-control" placeholder="00966XXXXXXX">
+                        <input type="text" id="phone" name="customerMobileNo" [(ngModel)]="order.customerMobileNo"
+                            required #txtCustomerMobileNo="ngModel" class="form-control" placeholder="00966XXXXXXX">
                     </div>
 
                     <div class="input-con">
-                        <label class="form-label" for="location">* {{'location' | translate}}</label>
-                        <select #ddlRegions name="ddlRegions" class="form-control form-select" [(ngModel)]="order.cityId"
-                        >
-                            <option disabled selected  >{{'location' | translate}}</option>
-                            <option [ngValue]="city.Id"  *ngFor="let city of cities" value="{{city.Id}}" [value]="city.Id">
-                                {{this.baseService.isRTL?city.Name:city.Name}}
-                            </option>
+                        <label class="form-label" for="carSelection">* {{'selectCar' | translate}}</label>
+                        <select id="carSelection" name="carId" [(ngModel)]="order.productId" required
+                            class="form-control">
+                            <option disabled selected>{{'selectCar' | translate}}</option>
+                            <option *ngFor="let car of Cars" [value]="car.id">{{ baseService.isRTL ? car.nameAr :
+                                car.nameEn }} {{ car.modelYear.Name }}</option>
                         </select>
                     </div>
 
-                    <div class="input-con">
-                        <label class="form-label" for="mark">* {{'brand' | translate}}</label>
-                        <select #ddlBrands id="model" name="ddlbrands" class="form-control form-select" 
-                        (change)='ddlBrands_Change(ddlBrands.value)' [(ngModel)]="order.brandName">
-                            <option disabled selected>{{'allBrands' | translate}}</option>
-                            <option [ngValue]="brand.nameAr" *ngFor="let brand of brands" value="{{brand.id}}" [value]="brand.id">
-                                {{this.baseService.isRTL?brand.nameAr:brand.nameEn}}
-                            </option>
-                        </select>
-                    </div>
-
-                    <div class="input-con">
-                        <label class="form-label" for="type">* {{'type' | translate}}</label>
-                        <select id="model" name="ddlSubCategories" class="form-control form-select" >
-                            <option value="" selected disabled>{{'allModels' | translate}}</option>
-                            <option [ngValue]="subCategoriesDataSource" *ngFor="let subCategory of subCategoriesDataSource;"
-                            [value]="subCategory.id">
-                            {{subCategory.nameAr}}
-                          </option>
-                        </select>
-                    </div>
-
-                    <div class="input-con">
-                        <label class="form-label" for="model">* {{'model' | translate}}</label>
-                        <select id="model" name="ddlSubCategories" class="form-control form-select" >
-                            <option value="" selected disabled>{{'allModels' | translate}}</option>
-                            <option [ngValue]="subCategoriesDataSource" *ngFor="let model of modelYears;"
-                            [value]="model.id">
-                            {{model.nameAr}}
-                          </option>
-                        </select>
-                    </div>
                 </form>
             </div>
 
             <div class="car-request-detailes">
-                    <div class="title-con"><div class="title-dic"></div><h1>{{'carSpecifications' | translate}}</h1></div>
-                    <h5>{{'carRequestDesc' | translate}}</h5>
-                    <div class="input-con">
-                        <textarea name="remarks" [(ngModel)]="order.remarks" ngModel
-                        required #txtRemarks="ngModel" id="msg" class="form-control" placeholder="{{'carReqDesc' | translate}}" rows="8"></textarea>
-                    </div>
-                    <button class="btn41-43 btn-41" form="carRequest" [disabled]="!(carRequest.valid && carRequest.dirty)" (click)="saveOrder()"> <fa-icon [icon]="faPaperPlane"></fa-icon> {{'requestCar' | translate}} </button>
+                <button class="btn41-43 btn-41" form="carRequest" [disabled]="!(carRequest.valid && carRequest.dirty)"
+                    (click)="saveCarRequest()"> <fa-icon [icon]="faPaperPlane"></fa-icon> {{'requestCar' | translate}}
+                </button>
             </div>
         </div>
     </div>

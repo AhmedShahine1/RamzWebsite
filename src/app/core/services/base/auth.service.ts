@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, of } from 'rxjs';
-import { map } from 'rxjs/operators';
 import { BaseService } from '../base/base.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Router } from '@angular/router';
@@ -12,7 +11,7 @@ import { User } from '../../models/sc/user';
   providedIn: 'root'
 })
 export class AuthService {
-  baseUrl = this.base.baseUrl + 'auth/';
+  baseUrl = this.base.baseUrl + 'Account/';
   token: string;
   jwtHelper = new JwtHelperService();
   userToken: any;
@@ -61,13 +60,13 @@ export class AuthService {
 
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     localStorage.clear();
-    this.router.navigate(['/auth/login']);
+    this.router.navigate(['/Account/login']);
 
     // return this.afAuth.auth.signOut().then(() => {
     //   // this.showLoader = false;
     //   localStorage.clear();
-    //   // this.cookieService.deleteAll('user', '/auth/login');
-    //   this.router.navigate(['/auth/login']);
+    //   // this.cookieService.deleteAll('user', '/Account/login');
+    //   this.router.navigate(['/Account/login']);
     // });
     return of({ success: false });
   }

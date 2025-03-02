@@ -16,7 +16,10 @@ export class ApiService {
   saveContactMessage(model: ContactMessage) {
     return this.base.save('contactmessage', model);
   }
-
+  requestCar(model: any): Observable<any> {
+    return this.base.save('Booking/RequestCar', model);
+  }
+  
   saveOrder(id: number, model: Order) {
     return this.base.save('order/' + id, model);
   }

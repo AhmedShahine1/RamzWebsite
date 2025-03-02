@@ -9,7 +9,6 @@ import { BaseService } from '../services/base/base.service';
 import { SubCategoryService } from '../services/products/subCategory.service';
 import { ModelYearService } from '../services/products/modelYear.service';
 import { RegionService } from '../services/products/region.service';
-import { CityService } from '../services/products/city.service';
 import { BankService } from '../services/products/bank.service';
 import { WorksectorService } from '../services/products/worksector.service';
 import { ProductService } from '../services/products/product.service';
@@ -72,15 +71,6 @@ export class RegionsResolver implements Resolve<ApiObjectData> {
 @Injectable({
   providedIn: 'root'
 })
-export class CitiesResolver implements Resolve<ApiObjectData> {
-  constructor(
-    private service: CityService,
-    private baseService: BaseService
-  ) { }
-  resolve(): Observable<ApiObjectData> {
-    return this.baseService.resolveGets(this.service);
-  }
-}
 
 @Injectable({
   providedIn: 'root'

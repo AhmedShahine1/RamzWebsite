@@ -30,6 +30,7 @@ import { Product } from 'src/app/core/models/product';
 import { ProductService } from 'src/app/core/services/products/product.service';
 import { CategoryService } from 'src/app/core/services/products/category.service';
 import { Category } from 'src/app/core/models/category';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-home',
@@ -126,26 +127,33 @@ export class HomeComponent extends BaseComponent implements OnInit {
   }
 
   search() {
-    const queryParams = [];
+    const brandId = this.selectedBrand || null;
+    const categoryId = this.selectedCategory || null;
+    const modelId = this.selectedCarType || null;
+    const page = 1; // Default page
+    const size = 10; // Default page size
   
-    if (this.selectedBrand) {
-      queryParams.push(`brand=${this.selectedBrand}`);
-    }
-    if (this.selectedCategory) {
-      queryParams.push(`category=${this.selectedCategory}`);
-    }
-    if (this.selectedCarType) {
-      queryParams.push(`carType=${this.selectedCarType}`);
-    }
-    if (this.value) {
-      queryParams.push(`minPrice=${this.value}`);
-    }
-    if (this.highValue) {
-      queryParams.push(`maxPrice=${this.highValue}`);
-    }
-  
-    const queryString = queryParams.length ? '?' + queryParams.join('&') : '';
-    this.router.navigateByUrl(`/search-cars${queryString}`);
+    this.productService.find(brandId, categoryId, modelId, page, size).subscribe(
+      (response) => {
+        if (response.status) {
+          this.products = response.data; // Update the Cars list with search results
+        } else {
+          Swal.fire({
+            icon: 'error',
+            title: 'خطأ',
+            text: response.ErrorMessage || 'لم يتم العثور على نتائج',
+          });
+        }
+      },
+      (error) => {
+        Swal.fire({
+          icon: 'error',
+          title: 'خطأ',
+          text: 'حدث خطأ أثناء البحث عن السيارات',
+        });
+        console.error(error);
+      }
+    );
   }
   
   navigateToCarDetails(productId: string) {

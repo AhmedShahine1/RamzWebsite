@@ -75,15 +75,22 @@
               }}</span>
           </div>
           <div class="car-specs">
+            <!-- Transmission Type -->
             <div class="spec-item">
-              <i class="fas fa-tachometer-alt"></i> {{ product.kilometers }}
+              <i class="fas fa-cogs"></i>
+              {{ baseService.isRTL ? product.transmissionType.nameAr : product.transmissionType.nameEn }}
             </div>
+
+            <!-- Engine Size -->
             <div class="spec-item">
-              <i class="fas fa-cogs"></i> {{ product.option.nameAr }}
+              <i class="fas fa-car"></i>
+              {{ baseService.isRTL ? product.engineSize.nameAr : product.engineSize.nameEn }} CC
             </div>
+
+            <!-- Engine Position -->
             <div class="spec-item">
-              <i class="fas fa-gas-pump"></i> {{ baseService.isRTL ? product.fuelType.nameAr : product.fuelType.nameEn
-              }}
+              <i class="fas fa-car-battery"></i>
+              {{ baseService.isRTL ? product.enginePosition.nameAr : product.enginePosition.nameEn }}
             </div>
           </div>
         </div>

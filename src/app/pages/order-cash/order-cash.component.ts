@@ -52,12 +52,6 @@ export class OrderCashComponent extends BaseComponent implements OnInit {
     );
   }
 
-  ddlRegions_Change(id: string) {
-    this.ddlCities.control._parent.status = 'INVALID';
-    this.ddlCities.control._parent.value.cityId = null;
-    this.ddlCities.valueAccessor.value = null;
-  }
-
   saveOrder() {
     // this.order.productId = "2";
     // this.order.brandName = "تويوتا";

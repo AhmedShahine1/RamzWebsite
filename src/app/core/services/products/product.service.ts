@@ -35,10 +35,20 @@ export class ProductService {
     }
   }
 
-  find(brandId?: string, catId?: string, modelId?: string, page?: number, size?: number): Observable<ApiObjectData> {
-    return this.base.gets(this.controller + '/Find/' + brandId + '/' + catId + '/' + modelId + '/' + page + '/' + size)
+  find(brandId?: string, catId?: string, modelId?: string, page: number = 1, size: number = 20): Observable<ApiObjectData> {
+    let queryParams: string[] = [];
+  
+    if (brandId) queryParams.push(`brandId=${brandId}`);
+    if (catId) queryParams.push(`catId=${catId}`);
+    if (modelId) queryParams.push(`modelId=${modelId}`);
+    queryParams.push(`page=${page}`);
+    queryParams.push(`size=${size}`);
+  
+    const queryString = queryParams.length ? '?' + queryParams.join('&') : '';
+  
+    return this.base.gets(`${this.controller}/Filter${queryString}`);
   }
-
+  
   findByBrand(brancId?: string) {
     return this.base.gets(this.controller + '/CarsByBrand?BrandId=' + brancId);
   }

@@ -12,7 +12,7 @@ import { CarsComponent } from './pages/cars/cars.component';
 import { AboutComponent } from './pages/about/about.component';
 import { ServicesComponent } from './pages/services/services.component';
 import { BrandsResolver, ModelYearsResolver } from './core/resolvers/brand.resolver';
-import { AllProductsResolver, BanksResolver, CitiesResolver, ProductResolver, ProductsByBrandResolver, ProductsBySearchResolver, ProductsResolver, RegionsResolver, SubCategoriesResolver, WorkSectorsResolver } from './core/resolvers/resolvers.resolver';
+import { AllProductsResolver, BanksResolver, ProductResolver, ProductsByBrandResolver, ProductsBySearchResolver, ProductsResolver, RegionsResolver, SubCategoriesResolver, WorkSectorsResolver } from './core/resolvers/resolvers.resolver';
 import { BranchesResolver } from './core/resolvers/branch.resolver';
 import { OrderCashComponent } from './pages/order-cash/order-cash.component';
 import { OrderInstallmentComponent } from './pages/order-installment/order-installment.component';
@@ -59,7 +59,6 @@ const routes: Routes = [
     component: CarRequestComponent,
     resolve: {
       brands: BrandsResolver,
-      cities: CitiesResolver,
       modelYears: ModelYearsResolver,
       subCategories: SubCategoriesResolver,
     }
@@ -79,10 +78,7 @@ const routes: Routes = [
     path: "calculate",
     component: FeesComponent,
     resolve: {
-      regions: RegionsResolver,
-      cities: CitiesResolver,
       banks: BanksResolver,
-      workSectors: WorkSectorsResolver
     }
   },
   {
@@ -112,18 +108,13 @@ const routes: Routes = [
     path: 'order-cash',
     component: OrderCashComponent,
     resolve: {
-      regions: RegionsResolver,
-      cities: CitiesResolver
     }
   },
   {
     path: 'order-installment',
     component: OrderInstallmentComponent,
     resolve: {
-      regions: RegionsResolver,
-      cities: CitiesResolver,
       banks: BanksResolver,
-      workSectors: WorkSectorsResolver
     }
   },
   {

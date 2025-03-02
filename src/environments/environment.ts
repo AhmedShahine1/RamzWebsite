@@ -4,9 +4,9 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://cp.thekawkaba.com',
-  link: 'http://cp.thekawkaba.com',
-  url: 'cp.thekawkaba.com'
+  apiUrl: 'http://localhost:5109',
+  link: 'http://localhost:5109',
+  url: 'localhost:5109'
 };
 
 /*
