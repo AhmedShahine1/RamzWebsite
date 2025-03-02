@@ -36,25 +36,25 @@
       </div>
     </div>
     <div class="cars-container">
-      <div class="car-card" *ngFor="let product of products">
+      <div class="car-card" *ngFor="let product of products" (click)="navigateToCarDetails(product.id)">
         <div class="card-header">
-          <img class="company-logo" [src]="this.baseService.appUrl+product.brand.imageUrl" [alt]="product.brandName">
-        </div>
-        <div class="car-image">
-          <img [src]="this.baseService.appUrl+product.imageUrl" [alt]="product.nameAr">
+          <div class="car-image">
+            <img [src]="this.baseService.appUrl+product.imageUrl" [alt]="product.nameAr">
+            <img class="company-logo" [src]="this.baseService.appUrl+product.brand.imageUrl"
+              [alt]="product.brand.nameAr">
+          </div>
         </div>
         <div class="car-info">
-          <h3>{{ baseService.isRTL ? product.nameAr : product.nameEn }} {{ product.modelYearName }}</h3>
+          <h3>{{ baseService.isRTL ? product.nameAr : product.nameEn }} {{ product.modelYear.Name }}</h3>
         </div>
         <div class="price-section">
           <span class="aa">{{ product.sellingPrice | number }}</span>
           <span class="aa">{{ 'installmentsStartFrom' | translate }} {{ product.installmentPrice }} {{ 'sar' | translate
             }}</span>
         </div>
-
         <div class="car-specs">
           <div class="spec-item">{{ 'kilometers' | translate }}: {{ product.kilometers }}</div>
-          <div class="spec-item">{{ 'specs' | translate }}: {{ product.optionName }}</div>
+          <div class="spec-item">{{ 'specs' | translate }}: {{ product.option.nameAr }}</div>
           <div class="spec-item">{{ 'fuel' | translate }}: {{ baseService.isRTL ? product.fuelType.nameAr :
             product.fuelType.nameEn }}</div>
         </div>

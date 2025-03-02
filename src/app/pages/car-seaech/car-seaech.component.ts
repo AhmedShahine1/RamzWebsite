@@ -1,6 +1,6 @@
 import { Product } from './../../core/models/product';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { faCar, faChevronLeft, faChevronRight, faCoins, faFillDrip } from '@fortawesome/free-solid-svg-icons';
 import { takeUntil } from 'rxjs';
 import { BaseComponent } from 'src/app/components/components/base/base.component';
@@ -35,7 +35,8 @@ export class CarSeaechComponent extends BaseComponent implements OnInit{
   url:any;
   brandParamId:any;
   searchCount:number=0;
-  constructor(private route: ActivatedRoute, public baseService: BaseService, private apiService: ApiService,private productService:ProductService) {
+  constructor(private route: ActivatedRoute,    private router: Router,
+   public baseService: BaseService, private apiService: ApiService,private productService:ProductService) {
     super();
     this.url= environment.link;
   }
@@ -43,6 +44,10 @@ export class CarSeaechComponent extends BaseComponent implements OnInit{
   ngOnInit(): void {
     this.loadData();
   }
+  navigateToCarDetails(productId: string) {
+    this.router.navigate(['/car-detailes', productId]);
+  }
+  
   loadData() {
     this.route.queryParams.pipe(takeUntil(this.ngUnsubscribe)).subscribe((params) => {
       const brand = params.brand || null;
@@ -57,7 +62,6 @@ export class CarSeaechComponent extends BaseComponent implements OnInit{
         .subscribe(
           (data: ApiObjectData) => {
             this.products = data.data;
-            console.log(this.products);
             this.searchCount = this.products.length;
           },
           (error) => {

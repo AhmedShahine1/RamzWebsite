@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
 import { BrandsComponent } from './pages/brands/brands.component';
 import { CarsComponent } from './pages/cars/cars.component';
-import { CarDetailesComponent } from './pages/car-detailes/car-detailes.component';
 import { FeesComponent } from './pages/fees/fees.component';
 import { ServicesComponent } from './pages/services/services.component';
 import { CarRequestComponent } from './pages/car-request/car-request.component';
@@ -38,6 +37,7 @@ import { OrderCashComponent } from './pages/order-cash/order-cash.component';
 import { OrderInstallmentComponent } from './pages/order-installment/order-installment.component';
 import {PlatformModule} from '@angular/cdk/platform';
 import { CarSeaechComponent } from './pages/car-seaech/car-seaech.component';
+import { CarDetailsComponent } from './pages/car-details/car-details.component';
 
 export function createTranslateLoader(http: HttpClient): any {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
@@ -51,7 +51,6 @@ register();
     HomeComponent,
     BrandsComponent,
     CarsComponent,
-    CarDetailesComponent,
     FeesComponent,
     ServicesComponent,
     CarRequestComponent,
@@ -64,6 +63,7 @@ register();
     OrderCashComponent,
     OrderInstallmentComponent,
     CarSeaechComponent,
+    CarDetailsComponent,
   ],
   imports: [
     BrowserModule,

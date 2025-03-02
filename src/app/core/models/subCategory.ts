@@ -1,7 +1,7 @@
 import { Brand } from "./brand";
 
 export interface SubCategory {
-  id: number;
+  id: string;
   brand:Brand;
   nameAr: string;
   nameEn: string;

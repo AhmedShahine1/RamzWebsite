@@ -1,6 +1,6 @@
 export interface Color {
-  Id: number
-  Name: string
-  Value: string
-  IsActive: string
+  id: number
+  name: string
+  value: string
+  isActive: string
 }

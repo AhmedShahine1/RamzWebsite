@@ -1,45 +1,94 @@
 <section>
-    <div class="upper-header">
-        <img class="headerbg" src="../../../assets/images/headerbg.png">
-    </div>
-    <div class="bread-crumb">
-        <div class="container">
-            <span class="span-main" routerLink="/home">{{'home' | translate}}</span>
-            <fa-icon class="fa-left" [icon]="faChevronLeft"></fa-icon>
-            <fa-icon class="fa-right" [icon]="faChevronRight"></fa-icon>
-            <span class="span-main" routerLink="/brands">{{'brandsList' | translate}}</span>
-            <fa-icon class="fa-left" [icon]="faChevronLeft"></fa-icon>
-            <fa-icon class="fa-right" [icon]="faChevronRight"></fa-icon>
-            <span>{{this.baseService.isRTL?brand.nameAr:brand.nameEn}}</span>
-        </div>
-    </div>
+  <!-- Header Image -->
+  <div class="position-relative">
+    <img class="w-100" src="../../../assets/images/headerbg.png">
+  </div>
 
-    <div class="cars-container">
-        <div class="car-card" *ngFor="let product of products">
-            <div class="card-header">
-                <img class="company-logo" [src]="this.baseService.appUrl+product.brand.imageUrl"
-                    [alt]="product.brandName">
+  <!-- Breadcrumb -->
+  <nav class="breadcrumb py-2 bg-light">
+    <div class="container d-flex align-items-center">
+      <a class="breadcrumb-item text-decoration-none" routerLink="/home">{{ 'home' | translate }}</a>
+      <fa-icon class="mx-2" [icon]="faChevronLeft"></fa-icon>
+      <a class="breadcrumb-item text-decoration-none" routerLink="/brands">{{ 'brandsList' | translate }}</a>
+      <fa-icon class="mx-2" [icon]="faChevronLeft"></fa-icon>
+      <span class="text-dark">{{ baseService.isRTL ? brand.nameAr : brand.nameEn }}</span>
+    </div>
+  </nav>
+
+  <div class="containers py-4">
+    <div class="row d-flex align-items-start">
+
+      <!-- Search Box (Filters) -->
+      <div class="search-box-container">
+        <div class="search-box shadow-sm">
+          <h5 class="text-center mb-3">تفاصيل البحث</h5>
+
+          <!-- Brand Dropdown -->
+          <select class="form-select custom-input mb-3" [(ngModel)]="selectedBrandId">
+            <option value="" disabled selected hidden>اختر العلامة التجارية</option>
+            <option *ngFor="let b of brands" [value]="b.id">
+              {{ baseService.isRTL ? b.nameAr : b.nameEn }}
+            </option>
+          </select>
+
+          <!-- Subcategory Dropdown -->
+          <select class="form-select custom-input mb-3" [(ngModel)]="selectedSubCategoryId">
+            <option value="" disabled selected hidden>اختر الفئة</option>
+            <option *ngFor="let s of subCategories" [value]="s.id">
+              {{ baseService.isRTL ? s.nameAr : s.nameEn }}
+            </option>
+          </select>
+
+          <!-- Price Range -->
+          <div class="mb-3">
+            <label class="fw-bold">السعر</label>
+            <div class="d-flex gap-2">
+              <input type="number" class="form-control custom-input" [(ngModel)]="priceFrom" placeholder="من">
+              <input type="number" class="form-control custom-input" [(ngModel)]="priceTo" placeholder="إلى">
             </div>
+          </div>
+
+          <!-- Search Button -->
+          <div class="d-flex justify-content-center">
+            <button class="btn custom-btn" (click)="onSearchClick()">ابحث</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cars Container -->
+      <div class="cars-container">
+        <div class="car-card" *ngFor="let product of products" (click)="navigateToCarDetails(product.id)">
+          <div class="card-header">
             <div class="car-image">
-                <img [src]="this.baseService.appUrl+product.imageUrl" [alt]="product.nameAr">
+              <img [src]="this.baseService.appUrl+product.imageUrl" [alt]="product.nameAr">
+              <img class="company-logo" [src]="this.baseService.appUrl+product.brand.imageUrl"
+                [alt]="product.brand.nameAr">
             </div>
-            <div class="car-info">
-                <h3>{{ baseService.isRTL ? product.nameAr : product.nameEn }} {{ product.modelYearName }}</h3>
+          </div>
+          <div class="car-info">
+            <h3>{{ baseService.isRTL ? product.nameAr : product.nameEn }} {{ product.modelYear.Name }}</h3>
+          </div>
+          <div class="price-section">
+            <span class="aa">{{ product.sellingPrice | number }}</span>
+            <span class="aa">{{ 'installmentsStartFrom' | translate }} {{ product.installmentPrice }} {{ 'sar' |
+              translate
+              }}</span>
+          </div>
+          <div class="car-specs">
+            <div class="spec-item">
+              <i class="fas fa-tachometer-alt"></i> {{ product.kilometers }}
             </div>
-            <div class="price-section">
-                <span class="aa">{{ product.sellingPrice | number }}</span>
-                <span class="aa">{{ 'installmentsStartFrom' | translate }} {{ product.installmentPrice }} {{
-                    'sar' | translate
-                    }}</span>
+            <div class="spec-item">
+              <i class="fas fa-cogs"></i> {{ product.option.nameAr }}
             </div>
-
-            <div class="car-specs">
-                <div class="spec-item">{{ 'kilometers' | translate }}: {{ product.kilometers }}</div>
-                <div class="spec-item">{{ 'specs' | translate }}: {{ product.optionName }}</div>
-                <div class="spec-item">{{ 'fuel' | translate }}: {{ baseService.isRTL ? product.fuelType.nameAr
-                    :
-                    product.fuelType.nameEn }}</div>
+            <div class="spec-item">
+              <i class="fas fa-gas-pump"></i> {{ baseService.isRTL ? product.fuelType.nameAr : product.fuelType.nameEn
+              }}
             </div>
+          </div>
         </div>
+      </div>
+
     </div>
+  </div>
 </section>

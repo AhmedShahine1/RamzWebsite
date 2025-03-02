@@ -13,7 +13,7 @@ export class ProductService {
   constructor(private base: BaseService) { }
 
   get(id: string): Observable<ApiObjectData> {
-    return this.base.get(id, this.controller + '/car');
+    return this.base.gets(this.controller + `/car?id=${id}`);
   }
 
   getAll(): Observable<ApiObjectData> {

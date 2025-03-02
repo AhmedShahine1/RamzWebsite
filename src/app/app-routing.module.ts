@@ -8,7 +8,6 @@ import { ContactComponent } from './pages/contact/contact.component';
 import { CarRequestComponent } from './pages/car-request/car-request.component';
 import { FeesComponent } from './pages/fees/fees.component';
 import { Page404Component } from './pages/page404/page404.component';
-import { CarDetailesComponent } from './pages/car-detailes/car-detailes.component';
 import { CarsComponent } from './pages/cars/cars.component';
 import { AboutComponent } from './pages/about/about.component';
 import { ServicesComponent } from './pages/services/services.component';
@@ -18,6 +17,7 @@ import { BranchesResolver } from './core/resolvers/branch.resolver';
 import { OrderCashComponent } from './pages/order-cash/order-cash.component';
 import { OrderInstallmentComponent } from './pages/order-installment/order-installment.component';
 import { CarSeaechComponent } from './pages/car-seaech/car-seaech.component';
+import { CarDetailsComponent } from './pages/car-details/car-details.component';
 
 const routes: Routes = [
   {
@@ -87,7 +87,7 @@ const routes: Routes = [
   },
   {
     path: "car-detailes/:id",
-    component: CarDetailesComponent,
+    component: CarDetailsComponent,
     resolve: {
       product: ProductResolver,
       brands: BrandsResolver

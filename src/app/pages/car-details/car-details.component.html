@@ -1,0 +1,125 @@
+<div class="car-details-container">
+
+  <!-- Left Section: Car Information -->
+  <div class="left-panel">
+    <div class="card p-3">
+      <h1 class="text-center h5 font-weight-bold mb-3">
+        {{ baseService.isRTL ? car?.nameAr : car?.nameEn }}
+      </h1>
+
+      <!-- Price Section -->
+      <div class="bg-light rounded p-3 mb-3 text-center">
+        <div class="d-flex justify-content-center gap-5 align-items-center font-weight-bold text-dark">
+          <span class="fs-4">{{ car?.sellingPrice | number }} {{ baseService.isRTL ? 'ريال' : 'SAR' }}</span>
+          <div class="d-flex flex-column text-muted text-center">
+            <span class="fs-5">{{ baseService.isRTL ? 'السعر بالتقسيط' : 'Installment Price' }}</span>
+            <strong class="fs-4">{{ car?.installmentPrice | number }} {{ baseService.isRTL ? 'ريال' : 'SAR' }}</strong>
+          </div>
+        </div>
+      </div>
+
+
+
+      <!-- Color Section -->
+      <div class="text-center font-weight-bold text-dark mb-3 d-flex justify-content-center align-items-center">
+        <span class="ml-2">{{ baseService.isRTL ? 'اللون:' : 'Color:' }}</span>
+        <div class="d-flex">
+          <span *ngFor="let color of car.color" class="rounded-circle border border-dark d-inline-block mx-1"
+            [style.backgroundColor]="color.value" style="width: 20px; height: 20px;">
+          </span>
+        </div>
+      </div>
+
+      <!-- Details Section -->
+      <div class="bg-light rounded p-3 mb-3">
+        <div class="d-flex justify-content-between align-items-center small text-muted gap-3">
+          <span class="d-flex align-items-center gap-2 text-nowrap">
+            <i class="fa-solid fa-cogs"></i> {{ baseService.isRTL ? 'الحركة' : 'Transmission' }}:
+            <strong>{{ baseService.isRTL ? car?.transmissionType?.nameAr : car?.transmissionType?.nameEn }}</strong>
+          </span>
+
+          <span class="d-flex align-items-center gap-2 text-nowrap">
+            <i class="fa-solid fa-gas-pump"></i> {{ baseService.isRTL ? 'المحرك' : 'Fuel Type' }}:
+            <strong>{{ baseService.isRTL ? car?.fuelType?.nameAr : car?.fuelType?.nameEn }}</strong>
+          </span>
+
+          <span class="d-flex align-items-center gap-2 text-nowrap">
+            <i class="fa-solid fa-car"></i> {{ baseService.isRTL ? 'الماتور' : 'Engine Size' }}:
+            <strong>{{ baseService.isRTL ? car?.engineSize?.nameAr : car?.engineSize?.nameEn }}</strong>
+          </span>
+        </div>
+      </div>
+
+      <!-- Additional Details -->
+      <div class="bg-light rounded p-3 mb-3">
+        <div class="d-flex justify-content-between align-items-center small text-muted gap-3">
+          <span class="d-flex align-items-center gap-2 text-nowrap">
+            <i class="fa-solid fa-map-marker-alt"></i> {{ baseService.isRTL ? 'المنشأ' : 'Origin' }}:
+            <strong>{{ baseService.isRTL ? car?.origin?.nameAr : car?.origin?.nameEn }}</strong>
+          </span>
+
+          <span class="d-flex align-items-center gap-2 text-nowrap">
+            <i class="fa-solid fa-road"></i> {{ baseService.isRTL ? 'ممشاه' : 'Odometer' }}:
+            <strong>{{ car?.kilometers }} Km</strong>
+          </span>
+
+          <span class="d-flex align-items-center gap-2 text-nowrap">
+            <i class="fa-solid fa-cogs"></i> {{ baseService.isRTL ? 'موضع المحرك' : 'Engine Position' }}:
+            <strong>{{ baseService.isRTL ? car?.enginePosition?.nameAr : car?.enginePosition?.nameEn }}</strong>
+          </span>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="d-flex justify-content-center gap-4">
+        <button class="btn btn-warning text-white font-weight-bold fs-4 px-5" (click)="navigateToOrder('cash')">
+          {{ baseService.isRTL ? 'شراء كاش' : 'Buy Now' }}
+        </button>
+        <button class="btn btn-warning text-white font-weight-bold fs-4 px-5" (click)="navigateToOrder('installment')">
+          {{ baseService.isRTL ? 'تمويل' : 'Finance' }}
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- Right Section: Car Images & Specs -->
+  <div class="right-panel">
+    <div class="image-gallery">
+      <!-- Inside View -->
+      <div class="image-box">
+        <h3>{{ baseService.isRTL ? 'داخلية' : 'Interior' }}</h3>
+        <button class="arrow left" (click)="prevImage(true)">&#10094;</button>
+        <img [src]="this.baseService.appUrl+car?.insideCarImagesUrl[currentInsideImage]" alt="Inside Car">
+        <button class="arrow right" (click)="nextImage(true)">&#10095;</button>
+        <div class="thumbnails">
+          <img *ngFor="let img of car?.insideCarImagesUrl; let i = index" [src]="this.baseService.appUrl+img"
+            (click)="setImage(i, true)">
+        </div>
+      </div>
+
+      <!-- Outside View -->
+      <div class="image-box">
+        <h3>{{ baseService.isRTL ? 'خارجية' : 'Exterior' }}</h3>
+        <button class="arrow left" (click)="prevImage(false)">&#10094;</button>
+        <img [src]="this.baseService.appUrl+car?.imagesUrl[currentOutsideImage]" alt="Outside Car">
+        <button class="arrow right" (click)="nextImage(false)">&#10095;</button>
+        <div class="thumbnails">
+          <img *ngFor="let img of car?.imagesUrl; let i = index" [src]="this.baseService.appUrl+img"
+            (click)="setImage(i, false)">
+        </div>
+      </div>
+    </div>
+
+    <!-- Specifications -->
+    <div class="specifications">
+      <h3>{{ baseService.isRTL ? car?.nameAr : car?.nameEn }} {{ car?.modelYear.Name }}</h3>
+      <ul>
+        <li *ngFor="let spec of car?.specifications">
+          <i class="fas fa-check"></i> {{ baseService.isRTL ? spec.nameAr : spec.nameEn }}
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

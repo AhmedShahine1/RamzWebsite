@@ -148,7 +148,9 @@ export class HomeComponent extends BaseComponent implements OnInit {
     this.router.navigateByUrl(`/search-cars${queryString}`);
   }
   
-
+  navigateToCarDetails(productId: string) {
+    this.router.navigate(['/car-detailes', productId]);
+  }
   downloadApp() {
     if (this.platform.IOS || this.platform.SAFARI) {
       window.open("https://apps.apple.com/pk/app/%D8%B1%D9%85%D8%B2-%D8%A7%D9%84%D8%A7%D8%AE%D8%AA%D9%8A%D8%A7%D8%B1-%D9%84%D9%84%D8%B3%D9%8A%D8%A7%D8%B1%D8%A7%D8%AA/id1571358791");
