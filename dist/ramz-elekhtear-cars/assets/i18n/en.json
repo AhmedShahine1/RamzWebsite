@@ -183,5 +183,6 @@
     "installmentsStartFrom": "Installments start from",
     "kilometers": "Kilometers",
     "specs": "Specifications",
-    "fuel": "Fuel"
+    "fuel": "Fuel",
+    "selectCar":"Choose Car"
 }

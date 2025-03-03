@@ -4,103 +4,45 @@
   padding: 20px;
   background: #f9f9f9;
 }
-.card{
-  background: #edf2f5ff;
-}
+
 /* Left Panel */
 .left-panel {
   height: max-content;
-  width: auto;
+  max-width: 400px;
   background: #edf2f5ff;
-  border-radius: 8px;
+  border-radius: 25px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-.price {
-  font-size: 24px;
-  font-weight: bold;
-  color: #007bff;
-}
-
-.installment-section {
-  background: #eee;
-  padding: 10px;
-  margin: 10px 0;
-  border-radius: 5px;
-}
-
-.color-section {
-  margin-top: 10px;
-}
-
-.colors {
-  display: flex;
-  gap: 5px;
-}
-
-.color-box {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  border: 1px solid #ccc;
-  cursor: pointer;
-}
-
-.car-info {
-  margin-top: 10px;
-}
-
-.car-info p {
-  font-size: 14px;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-}
-
-.buttons {
-  display: flex;
-  gap: 10px;
-  margin-top: 15px;
-}
-
-.buy-btn,
-.installment-btn {
-  width: 100%;
-  padding: 10px;
-  border: none;
-  cursor: pointer;
-  border-radius: 5px;
-}
-
-.buy-btn ,
-.installment-btn {
-  background: #ffa500;
-  color: white;
+  padding: 15px;
 }
 
 /* Right Panel */
 .right-panel {
   flex-grow: 1;
+  min-width: 300px;
 }
 
+/* Image Gallery */
 .image-gallery {
   display: flex;
+  flex-wrap: wrap; /* Allow images to stack on smaller screens */
   gap: 10px;
+  justify-content: center;
 }
 
 .image-box {
   flex: 1;
   background: #fff;
   padding: 10px;
-  border-radius: 8px;
+  border-radius: 25px;
   text-align: center;
+  min-width: 200px;
 }
 
 .image-box img {
-  width: 80%;
+  width: 85%;
   max-height: 200px;
   object-fit: cover;
-  border-radius: 8px;
+  border-radius: 25px;
 }
 
 .thumbnails {
@@ -108,30 +50,28 @@
   gap: 5px;
   justify-content: center;
   margin-top: 10px;
+  flex-wrap: wrap;
 }
 
 .thumbnails img {
   width: 50px;
   height: 40px;
   cursor: pointer;
-  border-radius: 5px;
+  border-radius: 25px;
 }
 
+/* Specifications */
 .specifications {
   background: #edf2f5ff;
   padding: 15px;
   border-radius: 8px;
   margin-top: 10px;
 }
-.card {
-  border-radius: 20px !important; /* Increase the card's rounded corners */
-  overflow: hidden; /* Ensures child elements don't overflow the rounded corners */
-}
 
 .specifications ul {
   list-style: none;
   background-color: #fff;
-  padding: 0;
+  padding: 10px;
 }
 
 .specifications li {
@@ -140,4 +80,70 @@
   align-items: center;
   gap: 5px;
   margin-bottom: 5px;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .car-details-container {
+    flex-direction: column; /* Stack sections on smaller screens */
+    flex-wrap: wrap; /* Allow items to wrap on small screens */
+    align-items: center;
+  }
+
+  .left-panel {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .right-panel {
+    width: 100%;
+  }
+
+  .image-box {
+    min-width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .car-details-container {
+    flex-wrap: wrap; /* Allow items to wrap on small screens */
+    padding: 10px;
+  }
+
+  .image-box img {
+    max-height: 150px;
+  }
+
+  .thumbnails img {
+    width: 40px;
+    height: 30px;
+  }
+
+  .specifications {
+    padding: 10px;
+  }
+
+  /* Decrease font size in details section */
+  .details-section {
+    font-size: 10px !important; /* Reduce text size */
+  }
+
+  .details-section strong {
+    font-size: 10px !important; /* Keep strong text slightly larger */
+  }
+
+  /* Reduce font size for price section */
+  .fs-4 {
+    font-size: 14px !important; 
+  }
+
+  .fs-5 {
+    font-size: 12px !important; 
+  }
+
+  /* Adjust buttons */
+  .btn {
+    font-size: 14px !important; 
+    padding: 6px 15px !important;
+  }
 }
